@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Episode Picker
+{% endblock %}
+
+{% block body %}
+
+  <div class="text-box">
+    <h1>
+      'Random' Episode Picker
+    </h1>
+  </div>
+
+  <br><br>
+
+  <div class="text-box">
+    <br>
+    <form method="post" class=".title-form" action="/search_results">
+      <span>
+      Title:
+      <input type="text" name="title">
+      <input type="submit" value="Submit">
+      </span>
+    </form>
+    <br>
+  </div>
+
+  <br><br>
+
+  <div class="text-box">
+    <h1>
+      About:
+    </h1>
+    <p>
+      This page is intended to replicate the feeling of tuning into a network
+      show to get a random repeat. While other sites exist for this function,
+      this one contains what are, to my knowledge, unique features. Once you
+      search your show and select it from the options provided, you exclude
+      seasons by use of the check boxes and determine how much extra preference
+      should be given to highly rated episodes by use of the "rating factor"
+      sliding input. Once you provide these details, your episode will be generated.
+    </p>
+    <h1>
+      Technical information:
+    </h1>
+    <p>
+      This page is built with Flask and uses the requests and BeautifulSoup
+      modules to access pages on the IMDB website and extract the relevant data.
+    </p>
+    <p>
+      Once all needed information is accessed, it then generates a list of all
+      relevant episodes receiving additional entries based on their rating. It
+      then uses the choices function from the random module to select an episode
+      from this list and returns details (again scraped from IMDB) to the user.
+    </p>
+    <p>
+      This was done instead of using the IMDB API for 2 reasons. First off, my
+      understanding is that the IMDB API is poorly documented, meaning I would
+      be likely to hit many road blocks without clear answers available.
+      Additionally, I thought this was an excellent opportunity to learn web
+      scraping and gain proficiency with tools I could use in many projects, as
+      opposed to the limited possibilities of the IMDB API. While it would
+      likely have been more efficient, this was undertaken as a learning
+      opportunity and I believe this route was a better learning experience.
+    </p>
+
+    <h1>
+      Room for improvement:
+    </h1>
+
+    <p>
+      <ul>
+        <li> Aesthetics </li>
+        <li> Photos included on the search page </li>
+        <li> A better rating-weighting system for individual episodes </li>
+      </ul>
+    </p>
+    <h1>
+      Additional Note:
+    </h1>
+    <p>
+      This site utilizes IMDB data. The only aspect that is attributable to my
+      efforts is the specific application of the data to pick episodes. I am in
+      no way making money from this and I am not aware of any equivalent service
+      from which I am prevent IMDB from making money.
+    </p>
+    <p>
+      Any comments, questions, concerns, complaints, suggestions, praise,
+      adulation, anonymous love letters, death threats and/or world changing
+      manifestos can be sent to vincent.kuertz@gmail.com.
+
+      Thank you for viewing my work!
+    </p>
+
+  </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %} {% endblock %}</title>
+
+    {% block headscript %} {% endblock %}
+
+    <link rel="stylesheet" href={{ url_for('static', filename='stylez.css') }}>
+  </head>
+  <body>
+
+    <div class="nav-bar">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/plaid">Plaid Generator</a></li>
+        <li><a href="/ep_search">Episode Picker</a></li>
+      </ul>
+    </div>
+
+    <div class="navbar-offset">
+        {% block body %}
+        {% endblock %}
+    </div>
+    {% block bodyscript %} {% endblock %}
+  </body>

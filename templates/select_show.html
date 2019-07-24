@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Episode Picker
+{% endblock %}
+
+{% block headscript %}
+{% endblock %}
+
+
+{% block body %}
+  <div class="text-box">
+    <h1> Search Results: pg {{page}} of {{max_page}}</h1>
+  </div>
+  <div class="text-box results">
+    {% for i in range(results|length) %}
+      <div class="show-result">
+        <a href={{ "/show/" + i|string }} class="show-link">
+          <h3>
+            {{ results[i]["title"] }}
+          </h3>
+          {% if results[i]["image"] == None %}
+            <img src= {{ url_for('static', filename='shrug-face.jpg') }}>
+          {% else %}
+            <img src={{ results[i]["image"] }}>
+          {% endif %}
+        </a>
+      </div>
+    {% endfor %}
+    <div class="last-next">
+      {% if page != 1 %}
+        <a id="last-page" class="button" href="/search_results?page={{ page - 1 }}">Last page</a>
+      {% endif %}
+      {% if page != max_page %}
+        <a id="next-page" class="button" href="/search_results?page={{ page + 1 }}">Next page</a>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block bodyscript %}
+{% endblock %}

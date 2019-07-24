@@ -1,0 +1,241 @@
+body {
+  background-color: black;
+  background-image: url("me.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
+  text-shadow: 0 0 2px #000000;
+}
+
+p {
+  font-size: 20px;
+  text-align: left;
+  padding: 0px 50px 5px;
+}
+
+h1 {
+
+  /* text attributes */
+  text-align: center;
+  font-size: 40px;
+}
+
+h2 {
+
+  /* text attributes */
+  text-align: center;
+  font-size: 30px;
+}
+
+#controlPanel {
+  position: absolute;
+  left: 540px;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+#plaidCanvas {
+  position: absolute;
+}
+
+#linePanel {
+  height: 320px;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+/* Containers for content */
+
+.navbar-offset {
+  /* positions elements relative to navbar */
+
+  /* background  & position attributes */
+  position: relative;
+  left: 10%;
+}
+
+.text-box {
+
+  /* background  & position attributes */
+  position: relative;
+  left: 17%;
+  width: 40%;
+
+  /* background  & position attributes */
+  background-color: rgba(150,150,150, .6);
+
+  /* border & padding attributes */
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #FFFFFF;
+  padding: 0px 20px 0px;
+
+}
+
+.canvas-box {
+
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 500px;
+  left: 5%;
+  width: 80%;
+
+  /* background  & position attributes */
+  background-color: rgba(150,150,150, .6);
+
+  /* border & padding attributes */
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #FFFFFF;
+  padding: 20px 20px 20px;
+}
+
+
+
+.lineAttrContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 20%;
+}
+
+.outerInputContainer {
+  width: 100%;
+  display:flex;
+  flex-direction: column;
+}
+
+.innerInputContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#seasonSelector {
+  float: left;
+  width: 50%;
+}
+
+#ratingFactor {
+  display: block;
+  margin: left;
+}
+
+#paramSubmit {
+  display: block;
+  margin: auto;
+}
+
+#ep-image {
+  max-width: 90%;
+  display: block;
+  margin: auto;
+}
+
+label.season {
+  display: inline-block;
+}
+/* nav-bar */
+
+.nav-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    background-color: gray;
+    width: 10%;
+    position: fixed;
+    height: 100%;
+    left: 0%;
+    top: 0%;
+    z-index: 5;
+}
+
+.nav-bar a {
+    display: block;
+    color: #000000;
+    text-align: center;
+    padding: 5px 0px 5px;
+    text-decoration: none;
+    text-shadow: 0px 0px 0px;
+}
+
+.nav-bar a:hover {
+  color: #FFFFFF;
+  background-color: #000000;
+}
+
+a.active {
+  background-color: #009933;
+
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.title-form {
+  position: relative;
+  text-align: center;
+  padding: 10px 0px 10px;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+}
+
+.show-result {
+  width: 100%;
+}
+
+
+.show-result img {
+  max-width: 90%;
+  display: block;
+  margin: auto;
+}
+
+.show-result h3 {
+  padding: 15px 0px 5px;
+  text-shadow: 0 0 6px #000000;
+  color: white;
+  text-decoration: none;
+  font-size: 35px;
+  width: 100%;
+  text-align: center;
+  display: block;
+  margin: auto
+}
+
+.last-next {
+  padding: 20px 20px 10px;
+}
+
+#last-page {
+  float: left;
+}
+
+#next-page {
+  float: right;
+}
+
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-shadow: 0 0 0px #000000;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #ffffff;
+    background-color: rgba(210,210,210, 1);
+    padding: 2px 2px 2px;
+    text-decoration: none;
+    color: initial;
+}

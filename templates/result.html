@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  episode: {{ details["title"] }}
+{% endblock %}
+
+{% block body %}
+  <div class="text-box">
+    <h1>
+      {{ "S " + details["season"]|string + ", E " + details["number"]|string + ":" + details["title"] }}
+    </h1>
+  </div>
+
+  <div class="text-box">
+    <br>
+    <img id="ep-image" src={{ details["image"] }}>
+
+    <p>
+      {{details['summary']}}
+    </p>
+    <div class="innerInputContainer">
+      <a class=button id="reroll" href="/result"> Different Episode </a>
+      <a class=button id="restart" href="/ep_search"> Restart </a>
+      <a class=button id="change_params" href="/show/change"> Change Parameters </a>
+    </div>
+    <br>
+  </div>
+{% endblock %}
