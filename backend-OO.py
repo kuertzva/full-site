@@ -14,7 +14,7 @@ dbg = True
 
 app = Flask(__name__)
 active_users = {"": "placeholder"}
-app.secret_key= "Secret-Squirrel"
+app.secret_key= "Food-is-good-Soup"
 
 # helper functions
 def create_object(search_term):
