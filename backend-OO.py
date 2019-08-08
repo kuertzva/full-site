@@ -150,3 +150,6 @@ def result():
     print(ep)
 
     return render_template("result.html", details=ep)
+
+if __name__ == "__main__":
+    app.run(debug=False)
