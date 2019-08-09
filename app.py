@@ -9,6 +9,7 @@ import requests
 from IMDB_API import *
 import webbrowser
 from random import randint
+from helpers import *
 
 dbg = True
 
@@ -57,7 +58,6 @@ def ep_search():
 def search_results():
 
     global active_users
-    print("search page call")
 
     # initial search page
     if request.method == "POST":
