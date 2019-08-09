@@ -9,7 +9,6 @@ import requests
 from IMDB_API import *
 import webbrowser
 from random import randint
-from helpers import *
 
 dbg = True
 
