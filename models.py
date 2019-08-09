@@ -115,7 +115,7 @@ class show(proto):
         self.seasons = 0
         self.episode = None
 
-        self.episode_list = []
+        self.episodes = {"episodes": [], "weights": []}
 
     def __str__(self):
 
@@ -164,8 +164,6 @@ class show(proto):
         if self.debug:
             print(base_url)
 
-        self.episode_list = []
-
         for season in seasons:
             season_url = base_url + season
             season_soup = bs4.BeautifulSoup(requests.get(season_url).text, features="html.parser")
@@ -181,7 +179,7 @@ class show(proto):
                 if len(rating_elem) != 0:
                     rating = float(rating_elem[0].contents[0])
 
-                    self.episodes["episode"].append((ep_link, (int(season)), i + 1, rating))
+                    self.episodes["episodes"].append((ep_link, (int(season)), i + 1, rating))
 
                     if rating_factor != 0:
                         weight = rating ** rating_factor
@@ -193,11 +191,11 @@ class show(proto):
     def pick_episode(self):
 
         if len(self.episodes["weights"]) != 0:
-            e = choices(self.episodes["episode"],
+            e = choices(self.episodes["episodes"],
                         weights = self.episodes["weights"])[0]
 
         else:
-            e = choices(self.episodes["episode"])[0]
+            e = choices(self.episodes["episodes"])[0]
 
         self.episode = episode(e[0], e[1], e[2], e[3], self.debug)
 

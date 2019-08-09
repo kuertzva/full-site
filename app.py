@@ -122,6 +122,7 @@ def result():
 
     if 'user' not in session:
         return index()
+        
     wrapper = active_users[session["user"]]
 
     if not wrapper.has_searched():
