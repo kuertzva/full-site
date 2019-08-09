@@ -13,7 +13,7 @@ from random import randint
 dbg = True
 
 app = Flask(__name__)
-active_users = {"": "placeholder"}
+wrapper = wrapper_object(dbg)
 app.secret_key= "Food-is-good-Soup"
 
 # helper functions
@@ -56,15 +56,16 @@ def ep_search():
 @app.route("/search_results", methods=["GET", "POST"])
 def search_results():
 
-    global active_users
+    #global active_users
+    global wrapper
 
     # initial search page
     if request.method == "POST":
 
         title = request.form["title"]
-        create_object(title)
+        #create_object(title)
 
-        wrapper = active_users[session["user"]]
+        #wrapper = active_users[session["user"]]
         wrapper.set_search_term(title)
         wrapper.run_search()
         page = 1
@@ -73,9 +74,9 @@ def search_results():
     # page change
     else:
         # if page not accessed correct, redirect to beginning
-        if 'user' not in session:
-            return index()
-        wrapper = active_users[session["user"]]
+#        if 'user' not in session:
+#            return index()
+#        wrapper = active_users[session["user"]]
 
         if not wrapper.has_searched():
             return index()
@@ -97,11 +98,12 @@ def search_results():
 @app.route("/show/<path:idx>")
 def specification(idx):
 
-    global active_users
+    #global active_users
+    global wrapper
 
     if 'user' not in session:
         return index()
-    wrapper = active_users[session["user"]]
+    #wrapper = active_users[session["user"]]
 
     if not wrapper.has_searched():
         return index()
@@ -118,12 +120,13 @@ def specification(idx):
 @app.route("/result", methods=["GET", "POST"])
 def result():
 
-    global active_users
+    #global active_users
+    global wrapper
 
     if 'user' not in session:
         return index()
-        
-    wrapper = active_users[session["user"]]
+
+    #wrapper = active_users[session["user"]]
 
     if not wrapper.has_searched():
         return index()
