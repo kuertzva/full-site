@@ -4,6 +4,11 @@
   show: {{ details['title'] }}
 {% endblock %}
 
+{% block headscript %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+{% endblock %}
+
 {% block body %}
   <div class="text-box">
     <h1>
@@ -26,8 +31,11 @@
             {% endfor %}
           </div>
           <div id="ratingFactor">
-            Rating Factor: <br>
-            <input type ="range" name="rating_factor" min=0 max=100 value=0>
+            <input type="checkbox" id="rating-check"> Rating factor?
+            <div id="ratingSlide">
+              Rating Factor: <br>
+              <input type="range" id="slider" name="slider" min=1 max=3 step=.1 value=0>
+            </div>
           </div>
         </div>
       </div>
@@ -35,4 +43,22 @@
       <br>
     </div>
   </form>
+{% endblock %}
+
+{% block bodyscript %}
+  <script>
+    $(document).ready(function() {
+      $("#ratingSlide").hide();
+      $("#rating-check").change(function() {
+        if (this.checked) {
+          $("#ratingSlide").show();
+          $("#slider").attr("value", "1");
+        }
+        else {
+          $("#ratingSlide").hide();
+          $("#slider").attr("value", "0");
+        }
+      });
+    });
+  </script>
 {% endblock %}
