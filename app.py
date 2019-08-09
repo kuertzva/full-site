@@ -6,7 +6,7 @@ Bug list:
 
 from flask import Flask, request, render_template, json, session
 import requests
-from IMDB_API import *
+from models import *
 import webbrowser
 from random import randint
 
@@ -89,14 +89,8 @@ def search_results():
 
     results = wrapper.get_shows()[1]
 
-    print(results)
-
     if len(results) == 0:
         return render_template("no_results.html")
-
-    for show in results:
-        s = show.return_show()
-        print(f"show: {s}")
 
     return render_template("select_show.html", results=results, page=page, max_page= wrapper.get_max_page())
 
@@ -111,10 +105,6 @@ def specification(idx):
 
     if not wrapper.has_searched():
         return index()
-
-    print(f"specification idx: {idx}")
-
-    print(wrapper)
 
     if idx != "change":
         wrapper.set_show(int(idx))
@@ -141,7 +131,7 @@ def result():
 
     if request.method == "POST":
         seasons = request.form.getlist('seasons')
-        factor = int(request.form.get('rating_factor'))
+        factor = float(request.form.get('slider'))
         show.gather_episodes(seasons, factor)
 
     ep = show.pick_episode()

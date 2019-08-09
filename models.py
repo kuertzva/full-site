@@ -172,29 +172,32 @@ class show(proto):
             episode_divs = season_soup.select(".list_item")
 
             for i in range(len(episode_divs)):
+
                 div = episode_divs[i]
-
                 ep_link = div.select('strong > a')[0].get('href')
-
                 rating_elem = div.select('.ipl-rating-star__rating')
 
                 # ensures episode has rating(has airred)
                 if len(rating_elem) != 0:
                     rating = float(rating_elem[0].contents[0])
 
-                if rating_factor != 0:
-                    repeats = ceil(rating * (rating_factor / 10.0))
+                    self.episodes["episode"].append((ep_link, (int(season)), i + 1, rating))
 
-                else:
-                    repeats = 1
-
-                for j in range(repeats):
-                    self.episode_list.append((ep_link, season, i + 1, rating))
+                    if rating_factor != 0:
+                        weight = rating ** rating_factor
+                        self.episodes["weights"].append(weight)
+                        if self.debug:
+                            print(f"weight: {weight}")
 
 
     def pick_episode(self):
 
-        e = choices(self.episode_list)[0]
+        if len(self.episodes["weights"]) != 0:
+            e = choices(self.episodes["episode"],
+                        weights = self.episodes["weights"])[0]
+
+        else:
+            e = choices(self.episodes["episode"])[0]
 
         self.episode = episode(e[0], e[1], e[2], e[3], self.debug)
 
@@ -207,9 +210,6 @@ class show(proto):
 
         else:
             return self.episode
-
-
-
 
 class wrapper_object():
     def __init__(self, debug=False):
@@ -279,9 +279,6 @@ class wrapper_object():
                 print(result_num)
                 print(self.max_pages)
 
-
-
-
         links = search_soup.select("h3 > a")
 
         if self.debug:
@@ -341,9 +338,6 @@ class wrapper_object():
         if len(self.search_results) > 0:
             return True
         return False
-
-
-
 
     def change_page(self, change):
 

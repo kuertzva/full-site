@@ -135,6 +135,11 @@ h2 {
   margin: auto;
 }
 
+#rating-check {
+  float: left;
+}
+
+
 label.season {
   display: inline-block;
 }
