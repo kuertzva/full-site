@@ -4,22 +4,27 @@
   show: {{ details['title'] }}
 {% endblock %}
 
+{% block style %}
+  <link rel="stylesheet" href={{ url_for('static', filename='episode-style.css') }}>
+{% endblock %}
+
+
 {% block headscript %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 {% endblock %}
 
 {% block body %}
-  <div class="text-box">
-    <h1>
+  <div class="text-box center-hort" id="show-frame">
+    <h1 id="show-title">
       {{ details["title"] }}
     </h1>
-    <img src= {{ details['image'] }} class="center" alt="Image for " +
+    <img id="show-image" src= {{ details['image'] }} class="center-hort" alt="Image for " +
     {{ details['title'] }}">
-    <br>
+
   </div>
   <form method='post' action="/result">
-    <div class="text-box">
+    <div class="text-box center-hort" id="params">
       <div class="outerInputContainer">
         <div class="innerInputContainer">
           <div id="seasonSelector">
@@ -31,8 +36,10 @@
             {% endfor %}
           </div>
           <div id="ratingFactor">
-            <input type="checkbox" id="rating-check"> Rating factor?
-            <div id="ratingSlide">
+            <input type="checkbox" id="rating-check"> <span id="rating-text">
+              Rating factor?
+              </span>
+            <div id="rating-slide">
               Rating Factor: <br>
               <input type="range" id="slider" name="slider" min=1 max=3 step=.1 value=0>
             </div>
@@ -48,15 +55,18 @@
 {% block bodyscript %}
   <script>
     $(document).ready(function() {
-      $("#ratingSlide").hide();
-      $("#rating-check").change(function() {
+      $('#rating-slide').hide();
+      $('#rating-check').checked = false;
+      $('#rating-check').change(function() {
         if (this.checked) {
-          $("#ratingSlide").show();
-          $("#slider").attr("value", "1");
+          $('#rating-slide').show();
+          $('#rating-text').hide();
+          $('#slider').attr('value', '1');
         }
         else {
-          $("#ratingSlide").hide();
-          $("#slider").attr("value", "0");
+          $('#rating-slide').hide();
+          $('#rating-text').show();
+          $('#slider').attr('value', '0');
         }
       });
     });

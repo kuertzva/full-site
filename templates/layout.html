@@ -2,26 +2,30 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href={{ url_for('static', filename='main-style.css') }}>
+
+    {% block style %} {% endblock %}
 
     {% block headscript %} {% endblock %}
 
-    <link rel="stylesheet" href={{ url_for('static', filename='stylez.css') }}>
   </head>
   <body>
 
+    {% block bodyscript %} {% endblock %}
+
     <div class="nav-bar">
       <ul>
+        <br>
         <li><a href="/">Home</a></li>
         <li><a href="/plaid">Plaid Generator</a></li>
         <li><a href="/ep_search">Episode Picker</a></li>
       </ul>
+      <div class="nav-bar-tab"></div>
     </div>
 
-    <div class="navbar-offset">
-        {% block body %}
-        {% endblock %}
-    </div>
-    {% block bodyscript %} {% endblock %}
+    {% block body %}
+    {% endblock %}
+
   </body>

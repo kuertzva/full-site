@@ -1,0 +1,137 @@
+/* General to all pages */
+
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-shadow: 0 0 0px #000000;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #ffffff;
+    background-color: rgba(210,210,210, 1);
+    padding: 2px 2px 2px;
+    text-decoration: none;
+    color: initial;
+}
+
+/* Specific to search.html */
+
+.title-form {
+  position: relative;
+  text-align: center;
+  padding: 10px 0px 10px;
+  margin: 10px 0px 10px;
+}
+
+/* Specific to no_results.html */
+
+/* Specific to select_search.html */
+
+#results {
+  display: flex;
+  flex-direction: column;
+}
+
+.show-result {
+  width: 100%;
+}
+
+
+.show-result img {
+  max-width: 90%;
+  max-height: 90vh;
+  display: block;
+  margin: auto;
+}
+
+.show-result a {
+  position: relative;
+}
+
+.show-result h3 {
+  padding: 15px 0px 5px;
+  text-shadow: 0 0 6px #000000;
+  color: white;
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+  display: block;
+  margin: auto
+}
+
+#last-next {
+  padding: 20px 20px 10px;
+}
+
+#last-page {
+  float: left;
+}
+
+#next-page {
+  float: right;
+}
+
+/* Specific to specify_params.html */
+
+#show-frame {
+  position: relative;
+  height: 65vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#show-title {
+  position: relative;
+  margin: 5px 0px 5px;
+}
+
+#show-image {
+  position: relative;
+  max-height: 50vh;
+}
+
+#params {
+  position: relative;
+  max-height: 35vh;
+}
+
+#seasonSelector {
+  float: left;
+  width: 50%;
+  overflow-y: scroll;
+}
+
+#ratingFactor {
+  float: left;
+  display: block;
+  width: 50%;
+}
+
+#paramSubmit {
+  display: block;
+  margin: auto;
+}
+
+#rating-check {
+  float: left;
+}
+
+label.season {
+  display: inline-block;
+}
+
+/* Specific to result.html */
+
+#ep-title {
+    float: none;
+}
+
+#ep-image {
+  max-width: 90%;
+  max-height: 50vh;
+  display: block;
+  margin: auto;
+}
+
+h3 {
+}

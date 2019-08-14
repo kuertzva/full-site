@@ -4,14 +4,18 @@
   episode: {{ details["title"] }}
 {% endblock %}
 
+{% block style %}
+  <link rel="stylesheet" href={{ url_for('static', filename='episode-style.css') }}>
+{% endblock %}
+
 {% block body %}
-  <div class="text-box">
-    <h1>
+  <div class="text-box center-hort">
+    <h3 id="ep-title">
       {{ "S " + details["season"]|string + ", E " + details["number"]|string + ":" + details["title"] }}
-    </h1>
+    </h3>
   </div>
 
-  <div class="text-box">
+  <div class="text-box center-hort">
     <br>
     <img id="ep-image" src={{ details["image"] }}>
 

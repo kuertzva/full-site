@@ -1,0 +1,135 @@
+/* background and general containers */
+
+body {
+  background-color: black;
+  background-image: url('me.jpg');
+  background-size: 40%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
+  text-shadow: 0 0 2px #000000;
+}
+
+p {
+  font-size: 1em;
+  text-align: left;
+  padding: 0px 50px 5px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3.5em;
+}
+
+h2 {
+  text-align: center;
+  font-size: 3em;
+  float: left;
+}
+
+h3 {
+  padding: 0px 10px 0px;
+  float: left;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center;
+  font-size: 2.5em;
+}
+
+
+
+.text-box {
+  /* position attributes */
+  position: relative;
+  width: 60%;
+
+  /* background  & position attributes */
+  background-color: rgba(150,150,150, .6);
+
+  /* border & padding attributes */
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #FFFFFF;
+  padding: 10px 10px 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.center-hort {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center-vert {
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.outerInputContainer {
+  width: 100%;
+  display:flex;
+  flex-direction: column;
+}
+
+.innerInputContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+
+/* navbar */
+
+.nav-bar {
+  top: 0;
+  left: -26%;
+  position: fixed;
+  width: 30%;
+  height: 100%;
+  background-color: green;
+  z-index: 3;
+  border-right: 5px solid black;
+  overflow: hidden;
+
+  transition: left 2s;
+}
+
+.nav-bar:hover {
+  left: 0%;
+}
+
+.nav-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    background-color: gray;
+    height: 100%;
+    width: 83.3%;
+    float: left;
+    border-right: 5px solid black;
+}
+
+.nav-bar a {
+    display: block;
+    color: #000000;
+    text-align: center;
+    padding: 5px 0px 5px;
+    text-decoration: none;
+    text-shadow: 0px 0px 0px;
+    border-bottom: 1px solid white;
+}
+
+.nav-bar a:hover {
+  color: #FFFFFF;
+  background-color: #000000;
+}
+
+a.active {
+  background-color: #009933;
+}

@@ -4,18 +4,18 @@
   Episode Picker
 {% endblock %}
 
-{% block headscript %}
+{% block style %}
+<link rel="stylesheet" href={{ url_for('static', filename='episode-style.css') }}>
 {% endblock %}
 
-
 {% block body %}
-  <div class="text-box">
+  <div class="text-box center-hort">
     <h1> Search Results: pg {{page}} of {{max_page}}</h1>
   </div>
-  <div class="text-box results">
+  <div class="text-box center-hort" id="results">
     {% for i in range(results|length) %}
       <div class="show-result">
-        <a href={{ "/show/" + i|string }} class="show-link">
+        <a href={{ "/show/" + i|string }}>
           <h3>
             {{ results[i]["title"] }}
           </h3>
@@ -27,7 +27,7 @@
         </a>
       </div>
     {% endfor %}
-    <div class="last-next">
+    <div id="last-next">
       {% if page != 1 %}
         <a id="last-page" class="button" href="/search_results?page={{ page - 1 }}">Last page</a>
       {% endif %}
