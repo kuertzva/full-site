@@ -1,30 +1,29 @@
 /* background and general containers */
 
 body {
-  background-color: black;
-  background-image: url('me.jpg');
-  background-size: 40%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-  color: white;
+  background-image: url('checker.jpeg');
+  background-repeat: repeat;
+  background-size: 10px;
+  color: rgb(180,180,180);
   text-shadow: 0 0 2px #000000;
+  margin: 0 0 0;
 }
 
 p {
-  font-size: 1em;
+  font-size: 1.2em;
   text-align: left;
   padding: 0px 50px 5px;
 }
 
 h1 {
   text-align: center;
-  font-size: 3.5em;
+  font-size: 2.5em;
+  margin: 0 0 0;
 }
 
 h2 {
   text-align: center;
-  font-size: 3em;
+  font-size: 2em;
   float: left;
 }
 
@@ -34,7 +33,7 @@ h3 {
   margin-top: 0;
   margin-bottom: 0;
   text-align: center;
-  font-size: 2.5em;
+  font-size: 1.5em;
 }
 
 
@@ -45,12 +44,12 @@ h3 {
   width: 60%;
 
   /* background  & position attributes */
-  background-color: rgba(150,150,150, .6);
+  background-color: rgba(30,30,30, .6);
 
   /* border & padding attributes */
   border-radius: 5px;
   border-style: solid;
-  border-color: #FFFFFF;
+  border-color: rgb(150,150,150);
   padding: 10px 10px 10px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -63,9 +62,8 @@ h3 {
 }
 
 .center-vert {
-  display: block;
-  margin-top: auto;
-  margin-bottom: auto;
+
+
 }
 
 .outerInputContainer {
@@ -86,10 +84,11 @@ h3 {
 /* navbar */
 
 .nav-bar {
+  float: left;
   top: 0;
-  left: -26%;
+  left: -25vw;
   position: fixed;
-  width: 30%;
+  width: 30vw;
   height: 100%;
   background-color: green;
   z-index: 3;
@@ -99,18 +98,15 @@ h3 {
   transition: left 2s;
 }
 
-.nav-bar:hover {
-  left: 0%;
-}
-
 .nav-bar ul {
     list-style-type: none;
+    left:0;
     margin: 0;
     padding: 0;
     font-size: 1em;
     background-color: gray;
     height: 100%;
-    width: 83.3%;
+    width: 25vw;
     float: left;
     border-right: 5px solid black;
 }
@@ -125,9 +121,26 @@ h3 {
     border-bottom: 1px solid white;
 }
 
+.nav-bar:hover {
+  left: 0%;
+}
+
+.nav-bar:hover img {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
 .nav-bar a:hover {
   color: #FFFFFF;
   background-color: #000000;
+}
+
+#nav-tri {
+  position: relative;
+  float: right;
+  width: 3vw;
+  top: 50%;
+  right: .5vw;
 }
 
 a.active {

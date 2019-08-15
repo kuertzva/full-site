@@ -4,9 +4,72 @@
   Welcome!
 {% endblock %}
 
+{% block style %}
+  <link rel="stylesheet" href={{ url_for('static', filename='index-style.css') }}>
+{% endblock %}
+
 
 {% block body %}
   <div class="text-box center-hort">
-    <h1> Under construction! </h1>
+    <h1> Welcome to the homepage of <br>
+       <bold> Vincent Kuertz </bold>
+    </h1>
+  </div>
+
+  <div class="text-box center-hort">
+    <img src={{ url_for("static", filename="me.jpg")}} class="center-hort"
+    id="portrait">
+    <p>
+      I am a 28 year old, aspiring programmer living in Lakewood, Ohio. A
+      graduate of Miami University with a Bachelors in history, I grew
+      dissatisfied with my office job. I wanted to learn a skill which I could
+      apply to solving tangible issues. Eventually, I tried my hand at programming,
+      learning Python from a course on Coursera and over time decided programming
+      was my path to finding meaning and engaging work.
+    </p>
+
+    <p>
+      This site is my product, a continuing work in progress. Excluding the
+      portrait (credit to Alex Hand), all contents are my work. The backend is
+      built with Flask and the background and any other images were made using
+      GIMP. Some of my projects can be viewed on the side bar, with additional
+      details.
+    </p>
+
+    <p>
+      If you wish to contact me, my email is Vincent.Kuertz@gmail.com.
+      Additionally, here is my
+      <a href="https://www.linkedin.com/in/vincent-kuertz-40909a72/"> linkedin
+      </a> and my <a href="https://github.com/kuertzva"> github </a>. Below is
+      list of the languages and technologies I can work in. Additionally, I have
+      a limited knowledge of hardware repairs, having built a PC and having
+      diagnosed completed minor laptop repairs.
+    </p>
+
+    <div class="center" id="lists">
+
+      <h2>
+        Proficient in:
+      </h2>
+      <ul class="center">
+        <li>Python</li>
+        <li>Flask</li>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>Javascript</li>
+      </ul>
+
+      <h2>
+        Familiar with:
+      </h2>
+      <ul class="center">
+        <li>C</li>
+        <li>SQL</li>
+        <li>JQuery</li>
+        <li>Bash</li>
+        <li>Linux</li>
+      </ul>
+
+    </div>
   </div>
 {% endblock %}

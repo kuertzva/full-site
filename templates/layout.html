@@ -13,7 +13,9 @@
   </head>
   <body>
 
-    {% block bodyscript %} {% endblock %}
+    {% block bodyscript %}
+
+    {% endblock %}
 
     <div class="nav-bar">
       <ul>
@@ -22,7 +24,7 @@
         <li><a href="/plaid">Plaid Generator</a></li>
         <li><a href="/ep_search">Episode Picker</a></li>
       </ul>
-      <div class="nav-bar-tab"></div>
+      <img src={{ url_for("static", filename="arrow-closed.png")}} id="nav-tri">
     </div>
 
     {% block body %}

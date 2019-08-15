@@ -1,0 +1,24 @@
+#portrait {
+  height: 80vh;
+}
+
+#lists {
+  position: relative;
+}
+
+h2 {
+  position: relative;
+  width:100%;
+}
+
+ul {
+  margin: 0 0 0;
+  position: relative;
+  width:100%;
+  overflow: hidden;
+}
+
+li {
+  font-size: 1.5em;
+  text-align: center;
+}
