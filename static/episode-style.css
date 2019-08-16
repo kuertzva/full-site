@@ -116,6 +116,10 @@ a.button {
   float: left;
 }
 
+#slider {
+  max-width: 100%;  
+}
+
 label.season {
   display: inline-block;
 }

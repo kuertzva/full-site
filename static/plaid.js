@@ -161,15 +161,15 @@ $(document).ready(function() {
     colorBox.appendChild(colorHeader);
 
     var thiccHeader = document.createElement('h4');
-    thiccHeader.appendChild(document.createTextNode('Thickness'))
+    thiccHeader.appendChild(document.createTextNode('Size'))
     thiccBox.appendChild(thiccHeader);
 
     var regHeader = document.createElement('h4');
-    regHeader.appendChild(document.createTextNode('Regularity'))
+    regHeader.appendChild(document.createTextNode('Quantity'))
     regBox.appendChild(regHeader);
 
     var orientHeader = document.createElement('h4');
-    orientHeader.appendChild(document.createTextNode('Orientation'))
+    orientHeader.appendChild(document.createTextNode('Orient'))
     orientBox.appendChild(orientHeader);
 
 
