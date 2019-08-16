@@ -88,13 +88,13 @@ h3 {
   top: 0;
   left: -25vw;
   position: fixed;
-  width: calc(25vw + 40px);
+  width: calc(25vw + 35px);
   height: 100%;
   background-color: green;
   z-index: 3;
   border-right: 5px solid black;
   overflow: hidden;
-
+  -webkit-transition: left 2s;
   transition: left 2s;
 }
 
@@ -138,26 +138,48 @@ h3 {
 #nav-tri {
   position: relative;
   float: right;
-  width: 3vw;
+  width: 15px;
   top: 50%;
-  right: .5vw;
+  right: 10px;
 }
 
 a.active {
   background-color: #009933;
 }
 
-@media screen and (max-width: 800) {
-  body {
-    background-image: url("shrug-face.jpg");
+@media screen and (max-width: 800px) {
+
+  p {
+    font-size: .8em;
+    padding: 0px 5px 5px;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  h3 {
+    font-size: 1em;
+  }
+
+  .text-box {
+    /* position attributes */
+    float: right;
+    width: calc(100% - 75px);
+    margin-left: 35px;
+
   }
 
   .nav-bar {
-    width: 40vw;
-    left: -30vw;
+    width: calc(35vw + 35px);
+    left: -35vw;
   }
 
   .nav-bar ul {
-    width: 30vw;
+    width: 35vw;
   }
 }
