@@ -1,9 +1,8 @@
 /* background and general containers */
 
 body {
-  background-image: url('checker.jpeg');
+  background-image: url('flower-composite.jpg');
   background-repeat: repeat;
-  background-size: 10px;
   color: rgb(180,180,180);
   text-shadow: 0 0 2px #000000;
   margin: 0 0 0;
