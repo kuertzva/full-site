@@ -1,7 +1,6 @@
-+ Resolve mobile issue for episode generator
++ Resolve mobile issue for episode generator ?
 + optimize for mobile browsers
 + test on other browsers
-+ add content to front page
 + add description to plaid generator
 + review code for potential streamlining
 + comment code for clarity

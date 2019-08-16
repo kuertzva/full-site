@@ -1,5 +1,6 @@
 #portrait {
-  height: 80vh;
+  max-height: 80vh;
+  max-width: 60vw;
 }
 
 #lists {
