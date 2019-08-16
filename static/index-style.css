@@ -12,14 +12,14 @@ h2 {
   width:100%;
 }
 
-ul {
+ul.skills {
   margin: 0 0 0;
   position: relative;
   width:100%;
   overflow: hidden;
 }
 
-li {
+.skills li {
   font-size: 1.5em;
   text-align: center;
 }
