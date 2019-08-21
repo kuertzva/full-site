@@ -1,7 +1,8 @@
 /* background and general containers */
 
 body {
-  background-image: url('flower-composite.jpg');
+  background-image: url('flower-composite-2.jpg');
+  background-size: 25%;
   background-repeat: repeat;
   color: white;
   text-shadow: 0 0 4px #000000;

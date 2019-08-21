@@ -29,7 +29,7 @@
         <div class="innerInputContainer">
           <div id="seasonSelector">
             Seasons: <br>
-            {% for season in range(1, details["seasons"] + 1) %}
+            {% for season in details["seasons"] %}
               <label for="checkbox" class="season">
                 <input type="checkbox" name="seasons" value={{ season }} checked> {{ season }}
               </label>

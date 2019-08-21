@@ -112,7 +112,7 @@ class show(proto):
         self.title = title
         self.link = link
         self.image = self.get_image()
-        self.seasons = 0
+        self.seasons = []
         self.episode = None
 
         self.episodes = {"episodes": [], "weights": []}
@@ -146,8 +146,9 @@ class show(proto):
             to largest. Should this vary between shows, code can be added to grab the
             value from each element and select the largest
             """
-            self.seasons = int(options[-1].get('value'))
-            print(self.seasons)
+            for season in options:
+                self.seasons.append(season.get('value'))
+            print(f"Seasons {self.seasons}")
 
     def return_show(self):
         return {"title": self.title, "link": self.link, "image": self.image,
