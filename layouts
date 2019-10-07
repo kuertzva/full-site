@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>{% block title %} {% endblock %}</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel='stylesheet' href='styles.css'/>
+    {% block style %} {% endblock %}
+
+    {% block headscript %} {% endblock %}
+  </head>
+  <body>
+    <div id='banner'>
+      <h1 id='first-name'>Vincent</h1>
+      <h1 id='last-name'>Kuertz</h1>
+    </div>
+    <div id='frame'>
+      <div id='nav-bar'>
+        <div id='nav-frame'>
+          <ul>
+            <br>
+            <li><a href="/"><img class='bullet' src='ship.png'/><p>Home</p></a></li>
+            <li><a href="https://vkplaid.herokuapp.com/"><img class='bullet' src='ship.png'/><p>Plaid Generator<p></a></li>
+            <li><a href="/ep_search"><img class='bullet' src='ship.png'/><p>Episode Picker</p></a></li>
+          </ul>
+          <p id='nav-footer'>
+            <a target="_blank" href="https://icons8.com/icons/set/ship-wheel">Ship Wheel</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> <br>
+            <a target="_blank" href="https://icons8.com/icons/set/sailing-ship-small">Sailing Ship</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+          </p>
+        </div>
+        <img id='nav-logo' src='icons8-ship-wheel-26.png'/>
+      </div>
+      <div id='contact'>
+        <div class='align-container'>
+          <h2>Contact</h2>
+        </div>
+        <ul>
+          <li>vincent.kuertz@gmail.com</li>
+          <li><a href="https://www.linkedin.com/in/vincent-kuertz-40909a72/"> Linkedin
+          </a></li>
+          <li><a href="https://github.com/kuertzva"> github </a></li>
+        </ul>
+      </div>
+      <div id='content'>
+        {% block body %} {% endblock %}
+      </div>
+    </div>
+    {% block bodyscript %} {% endblock %}
+  </body>
+</html>
