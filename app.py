@@ -1,4 +1,4 @@
-#! python3
+#python3
 
 """
 Bug list:
@@ -10,7 +10,7 @@ from models import *
 import webbrowser
 from random import randint
 
-dbg = True
+dbg = False
 
 app = Flask(__name__)
 active_users = {"": "placeholder"}
@@ -122,7 +122,7 @@ def result():
 
     if 'user' not in session:
         return index()
-        
+
     wrapper = active_users[session["user"]]
 
     if not wrapper.has_searched():

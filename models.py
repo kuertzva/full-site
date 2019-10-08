@@ -1,4 +1,4 @@
-#! python3
+#!/usr/bin/env
 
 """
 2nd iteration of the episode_generators functionality. While prior
@@ -8,7 +8,7 @@ to store values inside object.
 """
 
 import requests
-from sys import argv
+from sys import argv, version
 import webbrowser
 import bs4
 from math import ceil

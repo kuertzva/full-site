@@ -1,22 +1,14 @@
-{% extends "layout.html" %}
+{% extends "new_layout.html" %}
 
 {% block title %}
   Welcome!
 {% endblock %}
 
 {% block style %}
-  <link rel="stylesheet" href={{ url_for('static', filename='index-style.css') }}>
 {% endblock %}
 
 
 {% block body %}
-  <div class="text-box center-hort">
-    <h1> Welcome to the homepage of <br>
-       <bold> Vincent Kuertz </bold>
-    </h1>
-  </div>
-
-  <div class="text-box center-hort">
     <img src={{ url_for("static", filename="me.jpg")}} class="center-hort"
     id="portrait">
     <p>
@@ -69,7 +61,5 @@
         <li>Bash</li>
         <li>Linux</li>
       </ul>
-
     </div>
-  </div>
 {% endblock %}
