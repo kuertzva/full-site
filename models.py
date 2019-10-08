@@ -1,4 +1,4 @@
-#!/usr/bin/site-env
+#!/usr/bin/env
 
 """
 2nd iteration of the episode_generators functionality. While prior

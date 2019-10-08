@@ -5,8 +5,7 @@
     src: url('fonts/new-quill.eot?#iefix') format('embedded-opentype'),
          url('fonts/new-quill.woff2') format('woff2'),
          url('fonts/new-quill.woff') format('woff'),
-         url('fonts/new-quill.ttf') format('truetype'),
-         url('fonts/new-quill.svg#aquilinetworegular') format('svg');
+         url('fonts/new-quill.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -17,8 +16,7 @@
     src: url('fonts/pirate2-webfont.eot?#iefix') format('embedded-opentype'),
          url('fonts/pirate2-webfont.woff2') format('woff2'),
          url('fonts/pirate2-webfont.woff') format('woff'),
-         url('fonts/pirate2-webfont.ttf') format('truetype'),
-         url('fonts/pirate2-webfont.svg#aquilinetworegular') format('svg');
+         url('fonts/pirate2-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -28,7 +26,6 @@
   to {transform: rotate(360deg)}
 }
 */
-
 
 @media screen and (max-width: 400px) {
   html {
@@ -81,7 +78,6 @@
   #contact li {
     display: table-cell;
     margin: 0%;
-    padding: auto;
     width: 32%;
     height: 100%;
     border-right: .1rem solid black;
@@ -100,6 +96,7 @@
 
 @media screen and (min-width: 800px) {
   html {
+    font-size: 30px;
   }
   :root {
     --nav-content-width: 20vw;
@@ -131,6 +128,7 @@
 
 @media screen and (min-width: 1000px) {
   html {
+    font-size: 35px;
   }
 }
 
@@ -190,10 +188,6 @@ p {
   left: 4rem;
 }
 
-#last-name::first-letter {
-  font-weight: bolder;
-}
-
 #banner-offset{
   z-index: -1;
   height: calc(6.5rem * .79);
@@ -229,7 +223,7 @@ p {
   top: 0px;
   margin: 0px 0px 0px 0px;
   padding: 0vh 0px 0px 0px;
-  background-image: url('wood-plank.jpeg');
+  background-image: url('./bkgd/wood-plank.jpg');
   background-repeat: repeat;
   background-size: var(--nav-content-width) auto;
   height: 100vh;
@@ -245,7 +239,7 @@ p {
   margin-left: auto;
   margin-right: auto;
   padding: 0%;
-  list-style-position: none;
+  list-style: none;
 }
 
 #nav-bar li {
@@ -338,7 +332,7 @@ p {
   margin-top: 1.5rem;
   padding: 1em;
   border-radius: .5rem;
-  background-image: url('paper.jpg');
+  background-image: url('./bkgd/paper.jpg');
   overflow: auto;
   font-family: 'pirate', cursive, fantasy, sans-serif;
   font-size: 1.5rem;
@@ -376,11 +370,9 @@ p {
 
 }
 
-
-
 #portrait {
   float: left;
-  width: 8rem;
+  width: 10rem;
   margin: 0rem;
   margin-right: 2rem;
   border: .1rem solid black;
