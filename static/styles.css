@@ -214,7 +214,7 @@ p {
   top: 0;
   left: calc(var(--nav-content-width) * -1);
   width: calc(var(--nav-content-width) + 1.5rem);
-  height: 100vh;
+  height: 140vh;
   background-color: blue;
   z-index: 3;
   border-right: 5px solid black;
@@ -225,13 +225,13 @@ p {
 }
 
 #nav-frame {
-  top: 0px;
+  top: -20vh;
   margin: 0px 0px 0px 0px;
   padding: 0vh 0px 0px 0px;
   background-image: url('./bkgd/wood-plank.jpg');
   background-repeat: repeat;
   background-size: var(--nav-content-width) auto;
-  height: 100vh;
+  height: 140vh;
   float: left;
   width: var(--nav-content-width);
   border-right: 5px solid black;
@@ -290,10 +290,10 @@ p {
 }
 
 #nav-logo {
-  position: relative;
+  position: absolute;
   float: right;
   width: 1rem;
-  top: 50%;
+  top: 50vh;
   right: .2rem;
   animation-name: wheel-spin;
   animation-duration: 1s;
