@@ -143,6 +143,8 @@
 }
 
 html {
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
@@ -151,7 +153,6 @@ body {
   background-color: #4da6ff;
   width: 100%;
   overflow-x: hidden;
-
 }
 
 p {
