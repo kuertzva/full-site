@@ -57,6 +57,7 @@
 @media screen and (max-width: 800px) {
 
   #contact {
+    overflow-x: hidden;
     position: fixed;
     margin-left: calc(var(--nav-content-width) + 2.7rem);
     width: calc(95vw - 2.1rem);
@@ -207,6 +208,7 @@ p {
 }
 
 #frame {
+  overflow-x: hidden;
   padding: 0;
   position: absolute;
   top: calc(6.5rem * .8);
