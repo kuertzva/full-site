@@ -143,7 +143,9 @@
   }
 }
 
-
+* {
+  border: 1px solid red;
+}
 
 html {
   width: 100vw;
@@ -206,7 +208,6 @@ p {
 }
 
 #frame {
-  overflow-x: hidden;
   padding: 0;
   position: absolute;
   top: calc(6.5rem * .8);
