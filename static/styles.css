@@ -202,6 +202,8 @@ p {
 }
 
 #frame {
+  padding: 0;
+  border: 1px solid red;
   position: absolute;
   top: calc(6.5rem * .8);
   right: 0%;
