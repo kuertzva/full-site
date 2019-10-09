@@ -11,55 +11,92 @@
 {% block body %}
     <img src={{ url_for("static", filename="me.jpg")}} class="center-hort"
     id="portrait">
+    <h2>About Me</h2>
     <p>
-      I am a 28 year old, aspiring programmer living in Lakewood, Ohio. A
-      graduate of Miami University with a Bachelors in history, I grew
-      dissatisfied with my office job. I wanted to learn a skill which I could
-      apply to solving tangible issues. Eventually, I tried my hand at programming,
-      learning Python from a course on Coursera and over time decided programming
-      was my path to finding meaning and engaging work.
+      I am Vincent Kuertz, a 29 year old aspiring programmer living in Lakewood,
+      Ohio. This site is a landing page for my personal projects and a space to practice web development.
+      . Graduating Miami University in 2013, I became increasingly bored of my prior
+      career path. Eventually, I became curious about computing and began learning Python.
+      My skills have since continued to develop. Please look around and review my work.
+      If you have suggestions, critiques or, best, an employment opportunity, please contact
+      me with the information below.
+    </p>
+    <h2>About My Skills</h2>
+    <p>
+      While I am self taught, I have not been without direction. I began my journey.
+      by completing the <a href='https://www.coursera.org/specializations/computer-fundamentals'>
+      Fundamentals of Computing</a> specialization through Coursera. The resulting
+      certificates can be found on my <a href='https://www.linkedin.com/in/vincent-kuertz-40909a72/'>
+      Linkedin</a>. I have also worked through the material of <a href='https://www.edx.org/course/cs50s-introduction-computer-science-harvardx-cs50x'>
+      CS50x</a> on edX, though I did not pursue a certificate.
+    </p>
+    <p>
+      Beyond these, I have worked on personal projects, some of which can be
+      found in the navigation bar to the side. I currently work off of Linux and
+      am familiar with windows. I do most of my work through the command prompt
+      and write in Atom, though I have used IDEs before. I have built a PC and
+      replaced laptop parts before, so I am familiar with the basics of hardware.
+    </p>
+    <p>
+      Below are the languages, tools and frameworks with which I have experience.
+      Links to separate pages outlining my experience therein will be added over
+      time where appropriate.
+    </p>
+    <ul class='outer-list'>
+      <li>
+        Python
+        <ul class='inner-list'>
+          <li>Flask</li>
+          <li>Tkinter</li>
+          <li>BeautifulSoup4</li>
+        </ul>
+      </li>
+      <li>
+        Javascript
+        <ul class='inner-list'>
+          <li>React.js</li>
+          <li>jQuery(limited)</li>
+        </ul>
+      </li>
+      <li>HTML&CSS</li>
+      <li>C</li>
+      <li>SQL</li>
+      <li>Git</li>
+    </ul>
+
+    <h2> About My Interests </h2>
+    <p>
+      Beyond computing, I have many interests and hobbies. I value being active
+      and practice Kung Fu and Taiji. These endeavors have helped me build the
+      discipline and perserverence necessary to teach myself to code and a much
+      needed outlet for the resulting frustrations.
+    </p>
+    <p>
+      Additionally, I am an avid reader with an interest in history, sci-fi/fantasy,
+      horror, politics, philosophy and classic literature. I also love comic books, with
+      my favorite titles being Batman, Saga, Shutter and the Walking Dead. I'm also
+      an intense music nerd, avidly following Punk, Metal and Hip Hop. What may
+      surprise you is I have almost zero interest in anything nautical (go figure).
+    </p>
+    <h2>About this Site</h2>
+    <p>
+      My portrait was painted by a personal friend, Alex Hand. The icons used are
+      from <a href='https://icons8.com'>icons8.com</a>. Navigation icon links can be found
+      at the bottom of the navigation bar. The anchor can be found at the bottom
+      of the page. The backgrounds for the
+      <a href='https://pixabay.com/photos/paper-old-texture-parchment-1074131/'>
+      content</a> and the <a href='https://pixabay.com/photos/wood-grain-structure-texture-board-2065366/'>navigation bar </a>
+      are from <a href='https://pixabay.com/'>pixabay.com</a>. All custom fonts were acquired through <a href='https://www.fontsquirrel.com'>
+      fontsquirrel.com</a>. The Episode Picker Project uses IMDB data.
     </p>
 
     <p>
-      This site is my product, a continuing work in progress. Excluding the
-      portrait (credit to Alex Hand), all contents are my work. The backend is
-      built with Flask and the background and any other images were made using
-      GIMP. Some of my projects can be viewed on the side bar, with additional
-      details.
+      Beyond the above, everything on this site is made by me. This whole site is
+      deployed through Heroku and uses a Flask backend. As of now, all CSS is vanilla.
+      Some images are editted using GIMP. The interface for Plaid Generator is made
+      using React.js and create-react-app and displays through the Canvas API.
+      Episode Picker is built using BeautifulSoup4 and Python 3.
     </p>
-
-    <p>
-      If you wish to contact me, my email is Vincent.Kuertz@gmail.com.
-      Additionally, here is my
-      <a href="https://www.linkedin.com/in/vincent-kuertz-40909a72/"> linkedin
-      </a> and my <a href="https://github.com/kuertzva"> github </a>. Below is
-      list of the languages and technologies I can work in. Additionally, I have
-      a limited knowledge of hardware repairs, having built a PC and having
-      diagnosed completed minor laptop repairs.
-    </p>
-
-    <div class="center" id="lists">
-
-      <h2>
-        Proficient in:
-      </h2>
-      <ul class="center skills">
-        <li>Python</li>
-        <li>Flask</li>
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>Javascript</li>
-      </ul>
-
-      <h2>
-        Familiar with:
-      </h2>
-      <ul class="center skills">
-        <li>C</li>
-        <li>SQL</li>
-        <li>JQuery</li>
-        <li>Bash</li>
-        <li>Linux</li>
-      </ul>
-    </div>
+    <br>
+    <a target="_blank" href="https://icons8.com/icons/set/anchor">Anchor</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 {% endblock %}
