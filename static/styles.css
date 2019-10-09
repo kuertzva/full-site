@@ -215,7 +215,7 @@ p {
   top: 0;
   left: calc(var(--nav-content-width) * -1);
   width: calc(var(--nav-content-width) + 1.5rem);
-  height: 140vh;
+  height: 120vh;
   background-color: blue;
   z-index: 3;
   border-right: 5px solid black;
