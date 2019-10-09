@@ -202,9 +202,9 @@ p {
   left: 4rem;
 }
 
-#banner-offset{
+#banner-buffer{
   z-index: -1;
-  height: calc(6.5rem * .79);
+  height: 6.5rem;
 }
 
 #frame {
@@ -218,10 +218,10 @@ p {
 /* navbar */
 
 #nav-bar {
-  position: sticky;
+  position: fixed;
   margin: 0px;
   float: left;
-  top: 0;
+  bottom: 0px;
   left: calc(var(--nav-content-width) * -1);
   width: calc(var(--nav-content-width) + 2rem);
   height: 120vh;
@@ -235,7 +235,9 @@ p {
 }
 
 #nav-frame {
-  top: -20vh;
+  position: sticky;
+  top: 0;
+  left: 0;
   margin: 0px 0px 0px 0px;
   padding: 0vh 0px 0px 0px;
   background-image: url('./bkgd/wood-plank.jpg');
@@ -303,7 +305,7 @@ p {
   position: absolute;
   float: right;
   width: 1rem;
-  top: 50vh;
+  bottom: 50vh;
   right: .5rem;
   animation-name: wheel-spin;
   animation-duration: 1s;
