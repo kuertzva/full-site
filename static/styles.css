@@ -143,6 +143,10 @@
   }
 }
 
+:root {
+  --banner-height: 6.5rem;
+}
+
 * {
   border: 1px solid red;
 }
@@ -174,7 +178,7 @@ p {
   z-index: 4;
   top: 0px;
   left: 0px;
-  height: 6.5rem;
+  height: var(--banner-height);
   width: 100%;
   background-image: linear-gradient(
     to bottom, rgba(0,0,0,1) 0%,
@@ -204,13 +208,13 @@ p {
 
 #banner-buffer{
   z-index: -1;
-  height: 6.5rem;
+  height: calc(var(--banner-height) * .79);
 }
 
 #frame {
   padding: 0;
   position: absolute;
-  top: calc(6.5rem * .8);
+  top: calc(var(--banner-height) * .8);
   right: 0%;
   width: calc(100vw + var(--nav-content-width));
 }
@@ -218,13 +222,13 @@ p {
 /* navbar */
 
 #nav-bar {
-  position: fixed;
+  position: sticky;
   margin: 0px;
   float: left;
-  bottom: 0px;
+  top: 0;
   left: calc(var(--nav-content-width) * -1);
   width: calc(var(--nav-content-width) + 2rem);
-  height: 120vh;
+  height: 100vh;
   background-color: blue;
   z-index: 3;
   border-right: 5px solid black;
@@ -235,9 +239,7 @@ p {
 }
 
 #nav-frame {
-  position: sticky;
-  top: 0;
-  left: 0;
+  top: -20vh;
   margin: 0px 0px 0px 0px;
   padding: 0vh 0px 0px 0px;
   background-image: url('./bkgd/wood-plank.jpg');
@@ -305,7 +307,7 @@ p {
   position: absolute;
   float: right;
   width: 1rem;
-  bottom: 50vh;
+  top: 50vh;
   right: .5rem;
   animation-name: wheel-spin;
   animation-duration: 1s;
@@ -319,7 +321,7 @@ p {
 #nav-footer {
   position: absolute;
   width: calc(var(--nav-content-width) - .3rem);
-  top: 85%;
+  top: 90%;
   font-size: .5rem;
   background-color: gold;
   border-radius: .2rem;
