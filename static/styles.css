@@ -219,8 +219,8 @@ p {
 /* navbar */
 
 #nav-bar {
-  position: sticky;
   position: -webkit-sticky;
+  position: sticky;
   float: left;
   top: 0;
   left: calc(var(--nav-content-width) * -1);
