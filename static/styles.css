@@ -154,8 +154,8 @@
 }
 
 html {
-  width: 100vw;
-  overflow-x: hidden;
+  /*?width: 100vw;
+  overflow-x: hidden;*/
   padding: 0;
 }
 
@@ -163,8 +163,8 @@ body {
   margin: 0px 0px 0px 0px;
   padding: 0;
   background-color: #4da6ff;
-  width: 100%;
-  overflow-x: hidden;
+  /*width: 100%;
+  overflow-x: hidden;*/
 }
 
 p {
@@ -222,7 +222,7 @@ p {
   position: -webkit-sticky;
   position: sticky;
   float: left;
-  top: 0;
+  top: 0%;
   left: calc(var(--nav-content-width) * -1);
   width: calc(var(--nav-content-width) + var(--nav-bar-tab));
   height: 100vh;
