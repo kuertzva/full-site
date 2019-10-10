@@ -60,7 +60,7 @@
     overflow-x: hidden;
     position: fixed;
     margin-left: calc(var(--nav-content-width) + (1.3 * calc(var(--nav-bar-tab))));
-    width: calc(95vw - var(--nav-bar-tab));
+    width: calc(100vw - var(--nav-bar-tab));
     bottom: 0rem;
     padding: .5rem;
   }
