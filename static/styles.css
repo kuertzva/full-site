@@ -220,6 +220,7 @@ p {
 
 #nav-bar {
   position: sticky;
+  position: -webkit-sticky;
   float: left;
   top: 0;
   left: calc(var(--nav-content-width) * -1);
@@ -228,7 +229,7 @@ p {
   background-color: blue;
   z-index: 3;
   border-right: 5px solid black;
-  /*overflow: hidden;*/
+  overflow: hidden;
   -webkit-transition: left 2s;
   transition: left 2s;
 
@@ -281,7 +282,7 @@ p {
 }
 
 #nav-bar:hover {
-  left: 0vw;
+  left: 0%;
 }
 
 #nav-bar:hover #nav-logo {
@@ -317,7 +318,7 @@ p {
 #nav-footer {
   position: absolute;
   width: calc(var(--nav-content-width) - .3rem);
-  top: 90%;
+  bottom: 5%;
   font-size: .5rem;
   background-color: gold;
   border-radius: .2rem;
