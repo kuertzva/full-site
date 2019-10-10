@@ -154,10 +154,12 @@
 html {
   width: 100vw;
   overflow-x: hidden;
+  padding: 0;
 }
 
 body {
   margin: 0px 0px 0px 0px;
+  padding: 0;
   box-sizing: border-box;
   background-color: #4da6ff;
   width: 100%;
@@ -213,6 +215,7 @@ p {
 
 #frame {
   padding: 0;
+  margin-left: 0;
   position: absolute;
   top: calc(var(--banner-height) * .8);
   right: 0%;
@@ -239,13 +242,12 @@ p {
 }
 
 #nav-frame {
-  top: -20vh;
-  margin: 0px 0px 0px 0px;
-  padding: 0vh 0px 0px 0px;
+  margin: 0px;
+  padding: 0px;
   background-image: url('./bkgd/wood-plank.jpg');
   background-repeat: repeat;
   background-size: var(--nav-content-width) auto;
-  height: 140vh;
+  height: 100%;
   float: left;
   width: var(--nav-content-width);
   border-right: 5px solid black;
@@ -261,12 +263,17 @@ p {
   list-style: none;
 }
 
+
 #nav-bar li {
   margin-bottom: .5rem;
   padding: .2rem .1rem .2rem .1rem;
   background-color: gold;
   border-radius: .2rem;
   box-shadow: .1rem .1rem black;
+}
+
+#nav-bar li:first-child {
+  margin-top: .7rem;
 }
 
 #nav-bar li a {
@@ -356,6 +363,10 @@ p {
   font-family: 'pirate', cursive, fantasy, sans-serif;
   font-size: 1.5rem;
   z-index: 1;
+ }
+
+ .no-margin-top {
+   margin-top: 0px;
  }
 
 #content p {
