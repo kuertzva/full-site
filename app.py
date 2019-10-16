@@ -1,4 +1,4 @@
-#python3
+#!/usr/bin/env python3
 
 """
 Bug list:
@@ -14,7 +14,7 @@ dbg = False
 
 app = Flask(__name__)
 active_users = {"": "placeholder"}
-app.secret_key= "Food-is-good-Soup"
+app.secret_key= "Felix-best-boy"
 
 # helper functions
 def create_object(search_term):

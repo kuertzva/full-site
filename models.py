@@ -1,4 +1,4 @@
-#!/usr/bin/env
+#!/usr/bin/env python3
 
 """
 2nd iteration of the episode_generators functionality. While prior
