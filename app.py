@@ -9,12 +9,13 @@ import requests
 from models import *
 import webbrowser
 from random import randint
+import os
 
 dbg = False
 
 app = Flask(__name__)
 active_users = {"": "placeholder"}
-app.secret_key= "Felix-best-boy"
+app.secret_key= os.environ.get('SECRET_KEY', None)
 
 # helper functions
 def create_object(search_term):
