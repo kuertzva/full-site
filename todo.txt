@@ -1,4 +1,37 @@
-+ Resolve mobile issue for episode generator ?
-+ test on other browsers
-+ review code for potential streamlining
-+ comment code for clarity
++ utilize session variable over active_users
+  - different facets of session
+    o search_term
+    o search_results
+    o search_page
+    o max_page
+    o show_id
+    o show_image
+    o season
+    o episode_list
+    o episode_id
+    o episode_title
+    o episode_season+number
+    o episode_image
+
++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
++ Testing concerns
+  - Is search running with term?
+  -
