@@ -11,11 +11,10 @@ import webbrowser
 from random import randint
 import os
 
-dbg = True
+dbg = False
 
 app = Flask(__name__)
-app.secret_key = "SECRET"
-#app.secret_key= os.environ.get('SECRET_KEY', None)
+app.secret_key = app.secret_key= os.environ.get('SECRET_KEY', None)
 
 #routes
 @app.route("/")
