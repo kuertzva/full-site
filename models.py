@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 """
-2nd iteration of the episode_generators functionality. While prior
-implementation was functional in nature, this is Object Oriented. Beyond making
-me a stronger Object Oriented Programmer, the benefit is that this will allow me
-to store values inside object.
+3rd iteration of episode_generator functionality. Original was functional,
+then rewrote to be object oriented. Due to issues with session and data not
+remaining consistent, trying functional to see if this fixes the problem. This
+is a clean up for a final reimplementation as a single page app.
 """
 
 import requests
@@ -14,371 +14,290 @@ import bs4
 from math import ceil
 from random import choices
 
-class proto():
-    def __init__(self, link, debug):
-        self.link = link
-        self.debug = debug
+def get_image(link, debug = False):
+    """
+    Acquire an image for either a show or episode.
 
-    def get_image(self):
-        """
-        Acquire an image for either a show or episode.
+    Note: There is a series of values at the ends of the titles that appears
+    to specify it is a smaller version of a larger image. When this is
+    removed, full size image can be accessed. I don't completely understand
+    this mechanism (do the extra characters specify a separate copy of the
+    original image or do they make the original image smaller?)
+    """
 
-        Note: There is a series of values at the ends of the titles that appears
-        to specify it is a smaller version of a larger image. When this is
-        removed, full size image can be accessed. I don't completely understand
-        this mechanism (do the extra characters specify a separate copy of the
-        original image or do they make the original image smaller?)
-        """
+    if debug:
+        print("begin get_image")
+        print(f"link: {link}")
 
-        if self.debug:
-            print("begin get_image")
-            print(f"link: {self.link}")
+    req = requests.get("https://www.imdb.com" + link)
+    show_soup = bs4.BeautifulSoup(req.text, features="html.parser")
 
-        req = requests.get("https://www.imdb.com" + self.link)
-        show_soup = bs4.BeautifulSoup(req.text, features="html.parser")
+    # access poster poster_div
+    try:
+        poster_div = show_soup.select(".poster")[0]
+    except:
+        return None
 
-        # access poster poster_div
+    image_src = poster_div.select("a > img")[0].get("src")
+
+    # chop size specifier off file name
+    return image_src[0:-27] + ".jpg"
+
+def run_search(term, imdb_page, debug = False):
+    """
+    this gets a specific page from the imdb search query. imdb_page is so named
+    because it is the page in imdb's search (divided into 50), while mine is
+    divided into five. Thus, search will have to be rerun every 10 pages
+    """
+
+    # confirm function call
+    if debug:
+        print("run_search()")
+
+    # scrub search term for imdb
+    formatted_term = "+".join(term.split())
+
+    # add page information to search term
+    if imdb_page > 0:
+        page_specifier = f"&start={ (imdb_page * 50) + 1 }"
+    else:
+        page_specifier = ""
+
+    # get BeautifulSoup data for search term
+    search_string = "https://www.imdb.com/search/title?title=" + formatted_term + "&title_type=tv_series" + page_specifier
+    if debug:
+        print(f"search_string: {search_string}")
+    search_soup = bs4.BeautifulSoup(requests.get(search_string).text, features="html.parser")
+
+    #get max page
+    if imdb_page < 1:
+
+        # identify element that states range and number of results
+        desc = search_soup.select(".desc")[0]
+        span = desc.select("span")[0].contents[0][0:-8]
+
+        # get number of results
+        if span[:8] == "1-50 of ":
+            span = span[8:]
         try:
-            poster_div = show_soup.select(".poster")[0]
+            result_num = float(span)
         except:
-            return None
+            result_num = 0
 
-        image_src = poster_div.select("a > img")[0].get("src")
+        # calculate max_pages
+        max_pages = int(ceil(result_num / 5))
+        if debug:
+            print(result_num)
+            print(max_pages)
 
-        # chop size specifier off file name
-        return image_src[0:-27] + ".jpg"
+    else:
+        max_pages = None;
 
+    # get valid pages for no_results
+    low = imdb_page * 10;
+    high = low + 9
+    page_range = [low, high]
+
+    # cultivate return list
+    links = search_soup.select("h3 > a")
+
+    if debug:
+        print(links)
+
+    search_results = []
 
+    print(len(links))
 
+    for i in range(len(links)):
+        if debug:
+            print(f"result: {i}")
 
+        try:
+            show_div = links[i]
+        except:
+            break
+        s = (show_div.contents[0], show_div.get("href"))
+        search_results.append(s)
 
-class episode(proto):
-    def __init__(self, link, season, number, rating, debug):
+    if debug:
+        print(f"search results length: {len(search_results)}")
+
+    return {"results": search_results, "max": max_pages, "range": page_range}
+
+def make_page(results, page, debug = False):
+    """
+    gives the information for five shows, formatted for IMDB display
+
+    results need to be the output of run_search()
+    page is the page of our search results, not of the page on imdb
+    """
+
+    if debug:
+        print("initiating make_page()")
+
+    start = 5 * (page % 10)
+    shows = []
+
+    if debug:
+        print(f"start: {start}")
+
+    for i in range(start, start + 5):
+        if debug:
+            print(i)
+
+        try:
+            args = results[i]
+        except:
+            break
+
+        s = {"title": args[0],"link": args[1],"image": get_image(args[1])}
+
+        shows.append(s)
+    if debug:
+        for show in shows:
+            print(show)
+    return shows
+
+def get_seasons(link, debug=False):
+    """
+    This determines how many seasons a show has using the link to the show
+
+    This returns a list as opposed to an int due to the possibility of
+    irregularities
+    """
+
+    if debug:
+        print("begin get_seasons()")
+
+    # get the BeautifulSoup data
+    show_url = "https://www.imdb.com/" + link + "episodes/"
+    tv_soup = bs4.BeautifulSoup(requests.get(show_url).text, features="html.parser")
+
+    # We are acquiring this data from a drop down, which the below line selects
+    select_elem = tv_soup.select('#bySeason')
+    seasons = []
+    # account for the possibility of a one season show
+    if len(select_elem) == 0:
+        seasons.append(1)
+    else:
+        # get contents of drop down
+        options = select_elem[0].select('option')
 
-        proto.__init__(self, link, debug)
+        # add each season
+        for season in options:
+            seasons.append(season.get('value'))
+        if debug:
+            print(f"Seasons {seasons}")
 
-        episode_url = "https://www.imdb.com/" + self.link
-        self.episode_soup = bs4.BeautifulSoup(requests.get(episode_url).text, features="html.parser")
+    return seasons
 
-        self.debug = debug
-        self.title = self.get_title()
-        self.summary = self.get_summary()
-        self.image = self.get_image()
-        self.link = link
-        self.season = season
-        self.number = number
-        self.rating = rating
+def get_episodes(link, seasons, factor, debug=False):
+    """
+    this returns a dictionary containing a list of dicts containing the
+    episodes link, season, episode number and rating and a list of weights
+    for their selection
+    """
 
-        episode_url = "https://www.imdb.com/" + self.link
-        self.episode_soup = bs4.BeautifulSoup(requests.get(episode_url).text, features="html.parser")
+    if debug:
+        print("begin get_episodes()")
+        print(seasons, factor)
 
-    def __str__(self):
-        return "This episode is {self.title} (season {self.season}, episode {self.number}), with a rating of {self.rating}"
+    episodes = {"episodes": [], "weights": []}
 
-    def get_title(self):
-        if self.debug:
-            print("begin get_title")
+    #this is the url that will be modified to access individual seasons
+    base_url = f"https://www.imdb.com/{link}episodes?season="
 
-        title_wrapper = self.episode_soup.select(".title_wrapper")[0]
-        title = title_wrapper.select("h1")[0].contents[0].replace(u'\xa0', ' ')
+    if debug:
+        print(f"Base URL: {base_url}")
 
-        return title
+    # iterate through seasons
+    for season in seasons:
+        season_url = base_url + season
+        season_soup = bs4.BeautifulSoup(requests.get(season_url).text, features="html.parser")
+        episode_divs = season_soup.select(".list_item")
 
-    def get_summary(self):
-        if self.debug:
-            print("begin get_summary")
+        #iterate through episodes
+        for i in range(len(episode_divs)):
+            div = episode_divs[i]
+            ep_link = div.select('strong > a')[0].get('href')
+            rating_elem = div.select('.ipl-rating-star__rating')
 
-        summary = self.episode_soup.select(".summary_text")[0].contents[0].replace(u'\n', ' ')
+            # excludes unrated episodes ensuring they have been airred
+            if len(rating_elem) != 0:
+                rating = float(rating_elem[0].contents[0])
 
-        if self.debug:
-            print(summary)
+                #add episode
+                episodes["episodes"].append({"link": ep_link,
+                                    "season": int(season),
+                                    "episode_number": i + 1,
+                                    "rating": rating})
 
-        return summary
+                # add weight if there is a factor selected
+                if factor != 0:
+                    weight = rating ** factor
+                    episodes["weights"].append(weight)
+                    if debug:
+                        print(f"weight: {weight}")
+    return episodes
 
-    def return_episode(self):
-        return {"title":self.title, "summary":self.summary, "image": self.image,
-                "link":self.link, "season":self.season, "number":self.number,
-                "rating":self.rating}
+def create_episode(e, debug=False):
+    """
+    takes an entry in the episode list and gathers all the necessary data
+    """
+    #{"title": , "summary": , "image": , "link": , "season": , "number": , "rating"}
 
+    if debug:
+        print("beginning create_episode()")
 
+    episode = {}
 
+    # get BeautifulSoup data for extracting details
+    episode_url = "https://www.imdb.com/" + e["link"]
+    episode_soup = bs4.BeautifulSoup(requests.get(episode_url).text, features="html.parser")
 
-class show(proto):
-    def __init__(self, link, title, debug):
+    #get title
+    title_wrapper = episode_soup.select(".title_wrapper")[0]
+    episode["title"] = title_wrapper.select("h1")[0].contents[0].replace(u'\xa0', ' ')
 
-        proto.__init__(self, link, debug)
+    #get summary
+    episode["summary"] = episode_soup.select(".summary_text")[0].contents[0].replace(u'\n', ' ')
 
-        self.debug = debug
-        self.title = title
-        self.link = link
-        self.image = self.get_image()
-        self.seasons = []
-        self.episode = None
+    #get image
+    episode["image"] = get_image(e["link"], debug)
 
-        self.episodes = {"episodes": [], "weights": []}
+    #link
+    episode["link"] = e["link"]
 
-    def __str__(self):
+    #season
+    episode["season"] =  e["season"]
 
-        ret_string = f"This show is titled {self.title}"
+    #number
+    episode["number"] = e["episode_number"]
 
-        if self.seasons == 0:
-            return ret_string +"."
-        else:
-            return ret_string + f" and has {self.seasons}."
+    #rating
+    episode["rating"] = e["rating"]
 
-    def set_seasons(self):
+    return episode
 
-        if self.debug:
-            print("being get_seasons")
 
-        show_url = "https://www.imdb.com/" + self.link + "episodes/"
-        tvSoup = bs4.BeautifulSoup(requests.get(show_url).text, features="html.parser")
+def pick(episodes, debug=False):
+    """
+    Pick the episode, gather its data and return all as a dictionary
+    """
 
-        # find number of seasons
-        select_elem = tvSoup.select('#bySeason')
-        if len(select_elem) == 0:
-            self.seasons = 1
-        else:
-            options = select_elem[0].select('option')
+    if debug:
+        print("begin pick()")
 
-            """
-            This SHOULD work because it appears IMDB formats this select element smallest
-            to largest. Should this vary between shows, code can be added to grab the
-            value from each element and select the largest
-            """
-            for season in options:
-                self.seasons.append(season.get('value'))
-            print(f"Seasons {self.seasons}")
+    # pick episodes
+    # if factored
+    if len(episodes["weights"]) != 0:
+        e = choices(episodes["episodes"],
+                    weights = episodes["weights"])[0]
+    # otherwise
+    else:
+        e = choices(episodes["episodes"])[0]
 
-    def return_show(self):
-        return {"title": self.title, "link": self.link, "image": self.image,
-                "seasons": self. seasons}
+    # gather the data
+    episode = create_episode(e)
 
-    def gather_episodes(self, seasons, rating_factor):
-
-        if self.debug:
-             print("initiating pick_episode")
-             print(seasons, rating_factor)
-
-        base_url = f"https://www.imdb.com/{self.link}episodes?season="
-
-        if self.debug:
-            print(base_url)
-
-        for season in seasons:
-            season_url = base_url + season
-            season_soup = bs4.BeautifulSoup(requests.get(season_url).text, features="html.parser")
-            episode_divs = season_soup.select(".list_item")
-
-            for i in range(len(episode_divs)):
-
-                div = episode_divs[i]
-                ep_link = div.select('strong > a')[0].get('href')
-                rating_elem = div.select('.ipl-rating-star__rating')
-
-                # ensures episode has rating(has airred)
-                if len(rating_elem) != 0:
-                    rating = float(rating_elem[0].contents[0])
-
-                    self.episodes["episodes"].append((ep_link, (int(season)), i + 1, rating))
-
-                    if rating_factor != 0:
-                        weight = rating ** rating_factor
-                        self.episodes["weights"].append(weight)
-                        if self.debug:
-                            print(f"weight: {weight}")
-
-
-    def pick_episode(self):
-
-        if len(self.episodes["weights"]) != 0:
-            e = choices(self.episodes["episodes"],
-                        weights = self.episodes["weights"])[0]
-
-        else:
-            e = choices(self.episodes["episodes"])[0]
-
-        self.episode = episode(e[0], e[1], e[2], e[3], self.debug)
-
-        return self.episode.return_episode()
-
-    def get_episode(self):
-
-        if episode == None:
-            print("Warning: No episode has been selected")
-
-        else:
-            return self.episode
-
-class wrapper_object():
-    def __init__(self, debug=False):
-
-        self.debug = debug
-
-        # search values
-        self.search_term = None
-        self.internal_page = 1
-        self.external_page = 1
-        self.search_results = []
-        self.display_shows = (0, [])
-        self.max_pages = None
-
-
-        self.show = None
-
-    def __str__(self):
-        ret_string = "This is a wrapper object"
-
-        if self.show != None:
-            ret_string += f" for the show {self.show}."
-
-        elif len(self.search_results) != 0:
-            ret_string += f" with the potential shows {self.search_results}."
-
-        else:
-            ret_string += "."
-
-        return ret_string
-
-    def set_search_term(self, search_term):
-        self.search_term = search_term
-
-    def run_search(self):
-
-        if self.debug:
-            print("initiating find_show")
-
-        formatted_title = "+".join(self.search_term.split())
-
-        if self.external_page > 1:
-            page_specifier = f"&start={ ((self.external_page - 1) * 50) + 1 }"
-
-        else:
-            page_specifier = ""
-
-        search_string = "https://www.imdb.com/search/title?title=" + formatted_title + "&title_type=tv_series" + page_specifier
-
-        if self.debug:
-            print(f"search_string: {search_string}")
-
-        search_soup = bs4.BeautifulSoup(requests.get(search_string).text, features="html.parser")
-
-        if self.max_pages == None:
-
-            desc = search_soup.select(".desc")[0]
-            span = desc.select("span")[0].contents[0][0:-8]
-            if span[:8] == "1-50 of ":
-                span = span[8:]
-            try:
-                result_num = float(span)
-            except:
-                result_num = 0
-            self.max_pages = int(ceil(result_num / 5))
-            if self.debug:
-                print(result_num)
-                print(self.max_pages)
-
-        links = search_soup.select("h3 > a")
-
-        if self.debug:
-            print(links)
-
-        self.search_results = []
-
-        for i in range(len(links)):
-            if self.debug:
-                print(i)
-
-            try:
-                show_div = links[i]
-            except:
-                break
-            s = (show_div.get("href"), show_div.contents[0], self.debug)
-            self.search_results.append(s)
-
-        if self.debug:
-            print(f"search results length: {len(self.search_results)}")
-
-    def get_shows(self):
-
-        if len(self.search_results) == 0:
-            return (0,[])
-
-        if self.debug:
-            print("begin get_shows")
-
-        start = 5 * (self.internal_page - 1) - (50 * (self.external_page - 1))
-
-        if self.debug:
-            print(f"start: {start}")
-
-        if self.internal_page != self.display_shows[0]:
-
-            self.display_shows = (self.internal_page, [])
-
-            for i in range(start, start + 5):
-                if self.debug:
-                    print(i)
-
-                try:
-                    args = self.search_results[i]
-                except:
-                    break
-                s = show(args[0], args[1], args[2])
-
-                self.display_shows[1].append(s)
-
-        return self.display_shows
-
-    def get_search_page(self):
-        return {"internal": self.internal_page, "external": self.external_page}
-
-    def has_searched(self):
-        if len(self.search_results) > 0:
-            return True
-        return False
-
-    def change_page(self, change):
-
-        if self.debug:
-            print("begin change_page")
-            print(f"change: {change}")
-
-        self.internal_page += change
-
-        print(f"intenrnal_page: {self.internal_page}")
-
-        external_page = ((self.internal_page - 1) // 10) + 1
-
-        if self.debug:
-            print(f"external page: {external_page}")
-
-
-        if self.external_page != external_page:
-            self.external_page = external_page
-            self.run_search()
-
-        return self.get_search_page()
-
-
-
-    def set_show(self, idx):
-
-        if self.debug:
-            print("begin set_show")
-            print(f"search results length: {len(self.search_results)}")
-            print(f"index: {idx}")
-
-        self.show = self.display_shows[1][idx]
-        print(self.show)
-        self.show.set_seasons()
-
-    def get_show(self):
-
-        if self.show == None:
-            print("Warning: no show yet determined")
-        else:
-            return self.show
-
-    def get_max_page(self):
-        return self.max_pages
+    return episode

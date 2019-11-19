@@ -10,7 +10,7 @@
 
 {% block body %}
   <div class="text-box center-hort">
-    <h1> Search Results: pg {{page}} of {{max_page}}</h1>
+    <h1> Search Results: pg {{page + 1}} of {{max_page}}</h1>
   </div>
   <div class="text-box center-hort" id="results">
     {% for i in range(results|length) %}
@@ -28,10 +28,10 @@
       </div>
     {% endfor %}
     <div id="last-next">
-      {% if page != 1 %}
+      {% if page != 0 %}
         <a id="last-page" class="button" href="/search_results?page={{ page - 1 }}">Last page</a>
       {% endif %}
-      {% if page != max_page %}
+      {% if page != max_page - 1 %}
         <a id="next-page" class="button" href="/search_results?page={{ page + 1 }}">Next page</a>
       {% endif %}
     </div>

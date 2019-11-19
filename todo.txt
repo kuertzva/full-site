@@ -5,33 +5,29 @@
     o search_page
     o max_page
     o show_id
+    o show_title
     o show_image
-    o season
+    o show_seasons
+    o selected_seasons
+    o factor
     o episode_list
     o episode_id
     o episode_title
     o episode_season+number
     o episode_image
 
-+
++ check to ensure that all shows are displayed
 
++ account for no seasons selected
 
-
-
-
-
-
-
-
-
-
-
-
-
-
++ determine better test for whether an episode has airred
 
 
 
 + Testing concerns
   - Is search running with term?
-  -
+  - Are all shows for a search term being displayed?
+  - Is max page accurate
+  - Is page range accurate
+  - is correct list of seasons acquired
+  - are all episodes in a season gathered
