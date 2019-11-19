@@ -1,3 +1,4 @@
 site-env/
 todo.txt
 plaid/
+.env
